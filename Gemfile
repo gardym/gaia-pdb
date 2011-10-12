@@ -18,6 +18,7 @@ end
 
 group :test do
   gem 'rspec-rails'
+  gem 'cucumber-rails'
 end
 
 gem 'jquery-rails'

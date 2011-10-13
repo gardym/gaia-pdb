@@ -14,12 +14,9 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'sqlite3'
-end
-
-group :test do
   gem 'rspec-rails'
   gem 'cucumber-rails'
+  gem 'sqlite3'
 end
 
 group :prototype, :production do

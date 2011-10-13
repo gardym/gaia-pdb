@@ -17,6 +17,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'cucumber-rails'
   gem 'sqlite3'
+  gem 'database_cleaner'
 end
 
 group :prototype, :production do

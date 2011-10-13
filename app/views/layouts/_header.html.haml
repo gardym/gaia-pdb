@@ -1,0 +1,7 @@
+%h1.span10 GAIA - Parameter DB
+
+#flash.span5
+  - flash.each do |key, msg|
+    %p{:class => "#{key} flash"}
+      = msg
+  .clear

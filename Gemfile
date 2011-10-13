@@ -2,11 +2,8 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0.rc8'
 
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
-gem 'sqlite3'
-
+gem 'haml'
+gem 'jquery-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -16,19 +13,19 @@ group :assets do
   gem 'uglifier'
 end
 
+group :development, :test do
+  gem 'sqlite3'
+end
+
 group :test do
   gem 'rspec-rails'
   gem 'cucumber-rails'
 end
 
-gem 'jquery-rails'
-
-# Use unicorn as the web server
-# gem 'unicorn'
+group :prototype, :production do
+  gem 'mysql2'
+  gem 'unicorn'
+end
 
 # Deploy with Capistrano
 # gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-

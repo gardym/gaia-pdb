@@ -1,7 +1,13 @@
-.params-table {
-	border: 1px solid black;
+.header {
+  background-color: #000;
+  /*background-image: url('/assets/icrar_logo_black_small.jpg');
+  background-repeat: no-repeat;*/
 }
 
-#header-container {
-  height: 60px;
+.top-space {
+	height: 40px;
+}
+
+.label {
+	font-weight: bold;
 }

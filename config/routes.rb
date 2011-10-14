@@ -57,4 +57,7 @@ Gaia::Application.routes.draw do
   # match ':controller(/:action(/:id(.:format)))'
 
   resources :parameters
+  
+  match 'search' => 'search#index', :via => :get
+  
 end

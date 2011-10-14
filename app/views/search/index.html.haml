@@ -1,0 +1,19 @@
+.row
+	.span16
+		%form
+			%fieldset
+				%legend Parameter search
+				.clearfix
+					%label{:for => 'unit'} Unit like
+					.input
+						%input{:name => 'unit'}
+				.clearfix
+					%label{:for => 'source'} Source like
+					.input
+						%input{:name => 'source'}
+				.clearfix
+					%label{:for => 'description'} Description like
+					.input
+						%input{:name => 'description'}
+			.actions
+				%button.btn.primary{:type => 'submit'}Search

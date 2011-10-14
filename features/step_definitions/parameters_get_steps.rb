@@ -4,12 +4,8 @@ Given /^there are (\d+) parameters$/ do |number|
   end
 end
 
-When /^I navigate to the parameters page$/ do
-  visit parameters_path
-end
-
-Then /^I should see (\d+) parameters$/ do |arg1|
-  page.all(".parameter").count.should == 5
+Then /^I should see (\d+) parameters$/ do |number|
+  page.all(".parameter").count.should == number.to_i
 end
 
 

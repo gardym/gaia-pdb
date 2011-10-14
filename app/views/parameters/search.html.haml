@@ -1,6 +1,6 @@
 .row
 	.span16
-		%form
+		%form{:method => 'post'}
 			%fieldset
 				%legend Parameter search
 				.clearfix
@@ -16,4 +16,4 @@
 					.input
 						%input{:name => 'description'}
 			.actions
-				%button.btn.primary{:type => 'submit'}Search
+				%button.btn.primary{:type => 'submit'} Search

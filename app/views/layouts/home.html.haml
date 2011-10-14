@@ -1,0 +1,12 @@
+%html
+  %head
+    %title= content_for?(:title) ? "GAIA Parameter Database - #{yield :title}" : "GAIA Parameter Database"
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tag
+  %body
+    #header-container
+      = render :partial => "layouts/header"
+    
+    #body-container.home-body
+      = yield

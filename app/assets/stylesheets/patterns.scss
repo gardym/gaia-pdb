@@ -15,7 +15,7 @@
   right: 0;
   z-index: 10000;
   overflow: visible;
-  background-color: #000;
+  background-color: #000; /* added - KB */
 
   // gradient is applied to it's own element because overflow visible is not honored by ie when filter is present
   .fill {
@@ -30,29 +30,6 @@
     color: $grayLight;
     text-shadow: 0 -1px 0 rgba(0,0,0,.25);
   }
-
-	.brand {
-		color: white;
-		cursor: auto;
-		display: block;
-		font-size: 20px;
-		font-style: normal;
-		font-weight: 200;
-		height: 20px;
-		line-height: 20px;
-		margin-bottom: 0px;
-		margin-left: -20px;
-		margin-right: 0px;
-		margin-top: 0px;
-		overflow-y: visible;
-		padding-bottom: 12px;
-		padding-left: 20px;
-		padding-right: 20px;
-		padding-top: 8px;
-		text-decoration: none;
-		text-shadow: rgba(0, 0, 0, 0.246094) 0px -1px 0px;
-		float: left;
-	}
 
   // Hover and active states
   a:hover,

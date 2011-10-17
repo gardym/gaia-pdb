@@ -1,19 +1,20 @@
 .row
 	.span16
-		%form{:method => 'post'}
+		%form
 			%fieldset
 				%legend Parameter search
 				.clearfix
 					%label{:for => 'unit'} Unit like
 					.input
-						%input{:name => 'unit'}
+						%input{:name => 'unit', :type => 'text'}
 				.clearfix
 					%label{:for => 'source'} Source like
 					.input
-						%input{:name => 'source'}
+						%input{:name => 'source', :type => 'text'}
 				.clearfix
 					%label{:for => 'description'} Description like
 					.input
-						%input{:name => 'description'}
+						%input{:name => 'description', :type => 'text'}
 			.actions
 				%button.btn.primary{:type => 'submit'} Search
+

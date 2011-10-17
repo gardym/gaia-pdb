@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.0.rc8'
+gem 'will_paginate', '~> 3.0.2'
 
 gem 'haml'
 gem 'jquery-rails'

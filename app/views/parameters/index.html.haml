@@ -1,17 +1,15 @@
-%table
-	- @parameters.each do |p|
-		%tr.parameter
-			%td
-				%div
-					%p.label Unit
-					= p.unit
-				%div
-					%p.label Source
-					= p.source
-				%div
-					%p.label Expression
-					= p.expression
-				%div
-					%p.label Description
-					= p.description
+- @parameters.each do |p|
+	.parameter
+		%div
+			.label Unit
+			= p.unit
+		%div
+			.label Source
+			= p.source
+		%div
+			.label Expression
+			= p.expression
+		%div
+			.label Description
+			= p.description
 			

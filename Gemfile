@@ -18,6 +18,7 @@ group :development, :test do
   gem 'cucumber-rails'
   gem 'sqlite3'
   gem 'database_cleaner'
+  gem 'launchy'
 end
 
 group :prototype, :production do

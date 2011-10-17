@@ -1,7 +1,18 @@
-%h1.span10 GAIA - Parameter DB
+.topbar
+	%ul
+		%li
+			= image_tag('icrar_logo_black_small.jpg')
+		%li
+			%a{:href=>"#{root_path}"} GAIA PDB
+		%li 
+			%a{:href=>""} Search
+		%li 
+			%a{:href=>""} Browse
 
-#flash.span5
-  - flash.each do |key, msg|
-    %p{:class => "#{key} flash"}
-      = msg
-  .clear
+		#flash.span5
+			- flash.each do |key, msg|
+				%p{:class => "#{key} flash"}
+				= msg
+			.clear
+
+%div.top-space

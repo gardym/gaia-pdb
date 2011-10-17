@@ -1,17 +1,17 @@
-%table.params-table
-	%tr
-		%th 
-			Description
-		%th 
-			Unit
-		%th 
-			Source
-		%th 
-			Expression
+%table
 	- @parameters.each do |p|
 		%tr.parameter
-			%td= p.description
-			%td= p.unit
-			%td= p.source
-			%td= p.expression
+			%td
+				%div
+					%p.label Unit
+					= p.unit
+				%div
+					%p.label Source
+					= p.source
+				%div
+					%p.label Expression
+					= p.expression
+				%div
+					%p.label Description
+					= p.description
 			

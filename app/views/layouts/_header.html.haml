@@ -5,9 +5,9 @@
 		%li
 			%a{:href=>"#{root_path}"} GAIA PDB
 		%li 
-			%a{:href=>""} Search
+			%a{:href=>"#{search_parameters_path}"} Search
 		%li 
-			%a{:href=>""} Browse
+			%a{:href=>"#{parameters_path}"} Browse
 
 		#flash.span5
 			- flash.each do |key, msg|

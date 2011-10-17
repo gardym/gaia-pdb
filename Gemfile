@@ -24,6 +24,7 @@ end
 group :prototype, :production do
   gem 'mysql2'
   gem 'unicorn'
+  gem "therubyracer", :require => 'v8'
 end
 
 # Deploy with Capistrano

@@ -3,9 +3,9 @@ require 'spec_helper'
 describe ParametersController do
   describe "GET index"
     it "should return all parameters" do
-      Parameter.stub(:all) {:some_params}
+      Parameter.stub(:page).with("test.page") {:some_params}
       
-      get :index
+      get :index, {:page => "test.page"}
       
       assigns(:parameters).should == :some_params
     end
@@ -20,9 +20,9 @@ describe ParametersController do
       
       it "should return all parameters when search criteria are empty" do
         SearchFilter.any_instance.stub(:empty?) {true}
-        Parameter.stub(:all) {:some_params}
+        Parameter.stub(:page).with("test.page") {:some_params}
         
-        get :search, {:source => "", :unit => "", :description => ""}
+        get :search, {:source => "", :unit => "", :description => "", :page => "test.page"}
         
         assigns(:parameters).should == :some_params
         response.should render_template("index")
@@ -32,13 +32,15 @@ describe ParametersController do
         mock_filter = double('SearchFilter')
         SearchFilter.stub(:initialize_from).and_return(mock_filter)
         mock_filter.stub(:empty?) {false}
-        mock_filter.stub(:build_query).and_return(["test.query", [1,2]])
+        mock_filter.stub(:build_query).and_return(["test.query", ["test1", "test2"]])
+        results = double()
+        results.stub(:paginate).with(:page => "test.page") {:some_params}
         
-        Parameter.stub(:where).with("test.query", 1, 2).and_return(:some_params)
+        Parameter.stub(:where).with("test.query", "test1", "test2") {results}
         
-        get :search, {:unit => "test.unit", :description => "test.description"}
+        get :search, {:unit => "test.unit", :description => "test.description", :page => "test.page"}
         
         assigns(:parameters).should == :some_params
-        response.should render_template("index")        
+        response.should render_template("index")
       end
 end

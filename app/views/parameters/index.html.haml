@@ -1,15 +1,20 @@
-- @parameters.each do |p|
-	.parameter
-		%div
-			.label Unit
-			= p.unit
-		%div
-			.label Source
-			= p.source
-		%div
-			.label Expression
-			= p.expression
-		%div
-			.label Description
-			= p.description
+.digg_pagination
+	.page_info 
+		= page_entries_info @parameters
+	= will_paginate @parameters, :container => true
+#search_results
+	- @parameters.each do |p|
+		.parameter
+			%div
+				.label Unit
+				= p.unit
+			%div
+				.label Source
+				= p.source
+			%div
+				.label Expression
+				= p.expression
+			%div
+				.label Description
+				= p.description
 			

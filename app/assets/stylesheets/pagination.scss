@@ -15,21 +15,21 @@
 	.current {
 		font-style: normal;
 		font-weight: bold;
-		background: #2e6ab1;
+		background: #000000;
 		color: white;
-		border: 1px solid #2e6ab1;
+		border: 1px solid #000000;
 	}
 	a {
 		text-decoration: none;
-		color: #105cb6;
-		border: 1px solid #9aafe5;
+		color: #000000;
+		border: 1px solid #000000;
 		&:hover, &:focus {
 		  color: #000033;
 		  border-color: #000033;
 		}
 	}
 	.page_info {
-		background: #2e6ab1;
+		background: #000000;
 		color: white;
 		padding: 0.4em 0.6em;
 		width: 22em;
@@ -37,7 +37,7 @@
 		text-align: center;
 		b {
 			color: #000033;
-			background: #2e6ab1 + 60;
+			background: #BABABA;
 			padding: 0.1em 0.25em;
 		}
 	}	

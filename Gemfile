@@ -29,4 +29,4 @@ group :prototype, :production do
 end
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'

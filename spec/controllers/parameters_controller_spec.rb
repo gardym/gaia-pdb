@@ -3,15 +3,16 @@ require 'spec_helper'
 describe ParametersController do
   describe "GET index"
     it "should return all parameters" do
-      Parameter.stub(:page).with("test.page") {:some_params}
+      Parameter.stub(:search).with("test.page") {:some_params}
       
       get :index, {:page => "test.page"}
       
       assigns(:parameters).should == :some_params
     end
     
-    describe "GET search"
-      it "should render the search form page when no query string" do        
+    describe "GET search with pagination"
+      it "should render the search form page when no query string" do
+        Parameter.stub(:search)
         get :search
         
         response.should render_template("search")
@@ -20,7 +21,7 @@ describe ParametersController do
       
       it "should return all parameters when search criteria are empty" do
         SearchFilter.any_instance.stub(:empty?) {true}
-        Parameter.stub(:page).with("test.page") {:some_params}
+        Parameter.stub(:search).with("test.page", instance_of(SearchFilter)) {:some_params}
         
         get :search, {:source => "", :unit => "", :description => "", :page => "test.page"}
         
@@ -30,15 +31,12 @@ describe ParametersController do
       
       it "should return parameters satisfying valid search criteria" do
         mock_filter = double('SearchFilter')
-        SearchFilter.stub(:initialize_from).and_return(mock_filter)
-        mock_filter.stub(:empty?) {false}
-        mock_filter.stub(:build_query).and_return(["test.query", ["test1", "test2"]])
-        results = double()
-        results.stub(:paginate).with(:page => "test.page") {:some_params}
+        SearchFilter.stub(:initialize_from)
+          .with(hash_including({"unit" => "test.unit", "description" => "test.description"}))
+          .and_return(mock_filter)        
+        Parameter.stub(:search).with("test.page", mock_filter) {:some_params}
         
-        Parameter.stub(:where).with("test.query", "test1", "test2") {results}
-        
-        get :search, {:unit => "test.unit", :description => "test.description", :page => "test.page"}
+        get :search, {:page => "test.page", :unit => "test.unit", :description => "test.description"}
         
         assigns(:parameters).should == :some_params
         response.should render_template("index")

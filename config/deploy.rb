@@ -20,7 +20,7 @@ set :user, "app"
 set :use_sudo, false
 ssh_options[:forward_agent] = true
 
-set :pid_path, "#{deploy_to}/shared/tmp/pids"
+set :pid_path, "#{deploy_to}/shared/pids"
 set :unicorn_config, "#{current_path}/config/unicorn.rb"
 set :unicorn_pid, "#{deploy_to}/unicorn.pid"
 

@@ -20,7 +20,7 @@ preload_app false
 worker_processes 4
 
 # Where to drop a pidfile
-pid "#{app_dir}/shared/tmp/pids/unicorn.pid"
+pid "#{app_dir}/shared/pids/unicorn.pid"
 
 # Where stderr gets logged
 stderr_path '/var/log/unicorn/error.log'

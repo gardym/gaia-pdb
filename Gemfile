@@ -28,5 +28,7 @@ group :prototype, :production do
   gem "therubyracer", :require => 'v8'
 end
 
-# Deploy with Capistrano
+# Deploy with Capistrano...
 gem 'capistrano'
+# ...with extensions for multi stage
+gem 'capistrano-ext'

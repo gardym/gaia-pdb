@@ -6,7 +6,9 @@
 # What ports/sockets to listen on, and what options for them.
 listen '/tmp/.sock', :backlog => 64
 
-working_directory '/var/www/gaia/current'
+app_dir = '/var/www/gaia'
+
+working_directory "#{app_dir}/current"
 
 # What the timeout for killing busy workers is, in seconds
 timeout 60
@@ -18,7 +20,7 @@ preload_app false
 worker_processes 4
 
 # Where to drop a pidfile
-pid '/var/www/gaia/unicorn.pid'
+pid "#{app_dir}/shared/tmp/pids/unicorn.pid"
 
 # Where stderr gets logged
 stderr_path '/var/log/unicorn/error.log'

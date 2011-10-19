@@ -6,7 +6,7 @@ Vagrant::Config.run do |config|
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "centos-57-64"
   
-  config.vm.host_name = "gaia.icrar.org"
+  config.vm.host_name = "ci.icrar.org"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
@@ -21,7 +21,7 @@ Vagrant::Config.run do |config|
 
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
-  config.vm.forward_port "http", 80, 8080
+  config.vm.forward_port "http", 8153, 8153
 
   # Share an additional folder to the guest VM. The first argument is
   # an identifier, the second is the path on the guest to mount the
@@ -57,8 +57,7 @@ Vagrant::Config.run do |config|
   config.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "~/Development/vagrant/chef-repo/cookbooks"
       chef.roles_path = "~/Development/vagrant/chef-repo/roles"
-      chef.add_role "appserver"
-      chef.add_role "dbserver"
+      chef.add_recipe "go"
     
       # You may also specify custom JSON attributes:
       chef.json.merge!({ 

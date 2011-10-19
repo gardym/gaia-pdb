@@ -3,17 +3,20 @@
 		= page_entries_info @parameters
 	= will_paginate @parameters, :container => true
 #search_results
-	- @parameters.each do |p|
-		.parameter
-			%div
-				.label Unit
-				= p.unit
-			%div
-				.label Source
-				= p.source
-			%div
-				.label Expression
-				= p.expression
-			%div
-				.label Description
-				= p.description
+	%table.zebra-striped
+		%thead
+			%th Unit
+			%th Source
+			%th Expression
+			%th Description
+		%tbody
+			- @parameters.each do |p|
+				%tr.parameter
+					%td 
+						= p.unit
+					%td 
+						= p.source
+					%td 
+						= p.expression
+					%td 
+						= p.description

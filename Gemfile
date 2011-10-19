@@ -20,6 +20,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'database_cleaner'
   gem 'launchy'
+  gem 'ci_reporter'
 end
 
 group :prototype, :production do

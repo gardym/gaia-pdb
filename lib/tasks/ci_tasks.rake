@@ -23,7 +23,7 @@ namespace :cucumber do
 end
 
 namespace :spec do
-  desc "Run all specs and create a html report"
+  desc "Run all specs and create a HTML report"
   RSpec::Core::RakeTask.new('html_report') do |t|
     t.rspec_opts = %w{--format html --out 'spec/reports/rspec.html'}
   end

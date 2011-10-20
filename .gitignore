@@ -2,6 +2,7 @@
 db/*.sqlite3
 log/*.log
 tmp/
-reports/
+spec/reports/
+features/reports/
 .sass-cache/
 *.DS_Store

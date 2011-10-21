@@ -14,5 +14,6 @@
 :app => {
   :name => "gaia",
   :user => "app"
- }
+ },
+ :run_list => "role[appserver], role[dbserver]"
 }

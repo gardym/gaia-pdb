@@ -1,0 +1,18 @@
+{
+:ruby => {
+  :version => "1.9.2",
+  :patch_level => "p290"
+  },
+:nginx => {
+  :user => "nginx",
+  :group => "nginx",
+  :working_dir => "/var/www"
+},
+:mysql => {
+  :server_root_password => "password"
+},
+:app => {
+  :name => "gaia",
+  :user => "app"
+ }
+}

@@ -6,7 +6,11 @@ gem 'will_paginate', '~> 3.0.2'
 gem 'haml'
 gem 'jquery-rails'
 gem "therubyracer", :require => 'v8'
+
+# ideally these wouldn't be herw
 gem 'ci_reporter'
+gem 'cucumber-rails'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -18,7 +22,6 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'cucumber-rails'
   gem 'sqlite3'
   gem 'database_cleaner'
   gem 'launchy'

@@ -6,6 +6,7 @@ gem 'will_paginate', '~> 3.0.2'
 gem 'haml'
 gem 'jquery-rails'
 gem "therubyracer", :require => 'v8'
+gem 'ci_reporter'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -21,7 +22,6 @@ group :development, :test do
   gem 'sqlite3'
   gem 'database_cleaner'
   gem 'launchy'
-  gem 'ci_reporter'
 end
 
 group :prototype, :production do

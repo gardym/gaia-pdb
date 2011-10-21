@@ -29,6 +29,10 @@ group :prototype, :production do
   gem 'unicorn'
 end
 
+group :heroku do
+  gem 'postgres'
+end
+
 # Deploy with Capistrano...
 gem 'capistrano'
 # ...with extensions for multi stage

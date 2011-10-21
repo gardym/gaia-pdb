@@ -28,6 +28,5 @@ prototype:
   password: password
   socket: /var/lib/mysql/mysql.sock
 
-
 cucumber:
   <<: *test

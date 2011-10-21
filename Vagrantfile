@@ -57,7 +57,8 @@ Vagrant::Config.run do |config|
   config.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = "~/Development/vagrant/chef-repo/cookbooks"
       chef.roles_path = "~/Development/vagrant/chef-repo/roles"
-      chef.add_recipe "go"
+      chef.add_role "appserver"
+      chef.add_role "dbserver"
     
       # You may also specify custom JSON attributes:
       chef.json.merge!({ 

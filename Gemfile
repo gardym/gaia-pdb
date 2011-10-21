@@ -7,6 +7,12 @@ gem 'haml'
 gem 'jquery-rails'
 gem "therubyracer", :require => 'v8'
 
+# ideally these wouldn't be herw
+gem 'ci_reporter'
+gem 'cucumber-rails'
+gem 'rspec-rails'
+
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -16,17 +22,18 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'cucumber-rails'
   gem 'sqlite3'
   gem 'database_cleaner'
   gem 'launchy'
-  gem 'ci_reporter'
 end
 
 group :prototype, :production do
   gem 'mysql2'
   gem 'unicorn'
+end
+
+group :heroku do
+  gem 'pg'
 end
 
 # Deploy with Capistrano...

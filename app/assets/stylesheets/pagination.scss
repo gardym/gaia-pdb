@@ -1,8 +1,7 @@
 .digg_pagination {
-	width: 500px;
 	background: white;
 	cursor: default;
-	margin: 10px auto;
+	margin: 10px;
 	padding:5px;
 	box-shadow: 0px 0px 8px #000000;
 	a, span, em {
@@ -19,7 +18,7 @@
 		font-style: normal;
 		font-weight: bold;
 		background: #000000;
-		color: white;
+		color: #fff;
 		border: 1px solid #000000;
 	}
 	a {
@@ -32,16 +31,19 @@
 		}
 	}
 	.page_info {
-		background: #000000;
-		color: white;
+//		background: #000000;
+		color: #000;
 		padding: 0.4em 0.6em;
 		width: 22em;
 		margin-bottom: 0.3em;
 		text-align: center;
 		b {
 			color: #000033;
-			background: #BABABA;
+//			background: #BABABA;
 			padding: 0.1em 0.25em;
 		}
-	}	
+	}
+	.pagination {
+		margin: 0;
+	}
 }

@@ -1,24 +1,22 @@
-.digg_pagination.centered
+.digg_pagination
 	.page_info 
 		= page_entries_info @parameters
 	= will_paginate @parameters, :container => true
 #search_results
-	%table.header
+	%table.zebra-striped
 		%thead
 			%th Unit
 			%th Source
 			%th Expression
 			%th Description	
-	.results
-		%table.zebra-striped
-			%tbody
-				- @parameters.each do |p|
-					%tr.parameter
-						%td 
-							= p.unit
-						%td 
-							= p.source
-						%td 
-							= p.expression
-						%td 
-							= p.description
+		%tbody
+			- @parameters.each do |p|
+				%tr.parameter
+					%td
+						= p.unit.empty? ? raw("&nbsp;") : p.unit
+					%td
+						= p.source.empty? ? raw("&nbsp;") : p.source
+					%td
+						= p.expression.empty? ? raw("&nbsp;") : p.expression
+					%td
+						= p.description

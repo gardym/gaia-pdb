@@ -1,6 +1,6 @@
 # configure bundler
 require 'bundler/capistrano'
-set :bundle_without,  [:development, :test]
+set :bundle_without,  [:development, :test, :heroku]
 
 # configure multiple stages
 set :stages, %w(vagrant prototype production)

@@ -7,8 +7,6 @@ gem 'haml'
 gem 'jquery-rails'
 gem "therubyracer", :require => 'v8'
 
-# ideally these wouldn't be herw
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

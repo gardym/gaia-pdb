@@ -11,12 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111021022457) do
+ActiveRecord::Schema.define(:version => 20111021023849) do
 
   create_table "parameters", :force => true do |t|
-    t.text     "description", :limit => 255
+    t.string   "description", :limit => 1024
     t.string   "unit"
-    t.text     "source",      :limit => 255
+    t.string   "source",      :limit => 1024
     t.string   "expression"
     t.datetime "created_at"
     t.datetime "updated_at"

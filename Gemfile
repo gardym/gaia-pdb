@@ -30,7 +30,7 @@ group :prototype, :production do
 end
 
 group :heroku do
-  gem 'postgres'
+  gem 'pg'
 end
 
 # Deploy with Capistrano...

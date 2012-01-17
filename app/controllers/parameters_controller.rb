@@ -18,12 +18,14 @@ class ParametersController < ApplicationController
     end
   end
 
+  private
+
   def create_pdf(parameters)
     pdf = Prawn::Document.new
 
     data = [["Unit", "Source", "Expression", "Description"]]
 
-    parameters.first(4).each do |p|
+    parameters.each do |p|
       data += [[p.unit, p.source, p.expression, p.description]]
     end
 

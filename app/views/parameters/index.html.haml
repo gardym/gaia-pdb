@@ -2,6 +2,9 @@
 	.page_info 
 		= page_entries_info @parameters
 	= will_paginate @parameters, :container => true
+#export
+	= link_to "Export as XML", param.merge(:format => :xml)
+	= link_to "Export as PDF", params.merge(:format => :pdf)
 #search_results
 	%table.zebra-striped
 		%thead

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ParametersController do
-  	describe "GET index" do
+  describe "GET index" do
 		it "should return all parameters" do
 		  Parameter.stub(:search).with("test.page") {:some_params}
 
@@ -65,6 +65,19 @@ describe ParametersController do
 			get :search, {:format => :pdf, :source => "", :unit => "", :description => "", :page => "test.page"}
 
 			response.header["Content-Type"].should include("application/pdf")
+		end
+
+		it "should call the PdfGenerator class" do
+			parameters = [double("parameter", :unit => "a", :source => "a", :expression => "c", :description => "d")]
+
+			SearchFilter.any_instance.stub(:empty?) {true}
+			Parameter.stub(:search).with("test.page", instance_of(SearchFilter)) {parameters}
+
+			PdfGenerator.any_instance.stub(:create_pdf).with(parameters) {"generated pdf"}
+
+			get :search, {:format => :pdf, :source => "", :unit => "", :description => "", :page => "test.page"}
+
+			response.body.should == "generated pdf"
 		end
 	end
 end

@@ -1,5 +1,3 @@
-require "prawn"
-
 class ParametersController < ApplicationController
   
   def index
@@ -18,20 +16,10 @@ class ParametersController < ApplicationController
     end
   end
 
-  private
+	private
 
-  def create_pdf(parameters)
-    pdf = Prawn::Document.new
-
-    data = [["Unit", "Source", "Expression", "Description"]]
-
-    parameters.each do |p|
-      data += [[p.unit, p.source, p.expression, p.description]]
-    end
-
-    pdf.table(data, :header => true)
-
-    pdf.render
-  end
-
+	def create_pdf(parameters)
+		generator = PdfGenerator.new
+		generator.create_pdf(parameters)
+	end
 end

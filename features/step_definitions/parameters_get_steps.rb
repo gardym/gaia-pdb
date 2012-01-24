@@ -15,6 +15,22 @@ Then /^I should see the first (\d+) parameters out of a total of (\d+)$/ do |pag
   end
 end
 
+Then /^the export as xml button exists$/ do
+  page.find_by_id("export_xml")
+end
+
+Then /^the export as pdf button exists$/ do
+  page.find_by_id("export_pdf")
+end
+
+When /^I export the results as pdf$/ do
+  page.find_by_id("export_pdf").click
+end
+
+When /^I export the results as xml$/ do
+  page.find_by_id("export_xml").click
+end
+
 When /^I choose to view the next page$/ do
   page.find("a.next_page").click
 end
@@ -23,3 +39,6 @@ Then /^the current page should be (\d+)$/ do |page_number|
     page.find(".pagination em.current").text.should == "#{page_number}"
 end
 
+Then /^I should get a response with content-type "([^"]*)"$/ do |content_type|
+  page.response_headers['Content-Type'].should include content_type
+end

@@ -44,8 +44,8 @@ describe ParametersController do
     end
   end
 
-  describe "GET search xml export" do
-    it "return xml data" do
+  describe "xml export" do
+    it "return xml data on search" do
       SearchFilter.any_instance.stub(:empty?) {true}
       Parameter.stub(:search).with("test.page", instance_of(SearchFilter)) {:some_params}
 
@@ -53,16 +53,28 @@ describe ParametersController do
 
       response.header["Content-Type"].should include("application/xml")
     end
+
+    it "return xml data on index" do
+      get :index, {:format => :xml}
+
+      response.header["Content-Type"].should include("application/xml")
+    end
   end
 
-  describe "GET search pdf export" do
-    it "return pdf data" do
+  describe "pdf export" do
+    it "return pdf data on search" do
       SearchFilter.any_instance.stub(:empty?) {true}
 
       parameter = double("parameter", :unit => "", :source => "", :expression => "", :description => "")
       Parameter.stub(:search).with("test.page", instance_of(SearchFilter)) {[parameter]}
 
       get :search, {:format => :pdf, :source => "", :unit => "", :description => "", :page => "test.page"}
+
+      response.header["Content-Type"].should include("application/pdf")
+    end
+
+    it "return pdf data on index" do
+      get :index, {:format => :pdf}
 
       response.header["Content-Type"].should include("application/pdf")
     end

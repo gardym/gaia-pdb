@@ -2,82 +2,69 @@ require 'spec_helper'
 
 describe ParametersController do
   describe "GET index" do
-		it "should return all parameters" do
-		  Parameter.stub(:search).with("test.page") {:some_params}
+    it "should return all parameters" do
+    Parameter.stub(:search).with("test.page") {:some_params}
 
-		  get :index, {:page => "test.page"}
+    get :index, {:page => "test.page"}
 
-		  assigns(:parameters).should == :some_params
-		end
-	end
-    
-	describe "GET search with pagination" do
-		it "should render the search form page when no query string" do
-			Parameter.stub(:search)
-			get :search
+    assigns(:parameters).should == :some_params
+    end
+  end
 
-			response.should render_template("search")
-			SearchFilter.should_not_receive(:new)
-		end
+  describe "GET search with pagination" do
+    it "should render the search form page when no query string" do
+      Parameter.stub(:search)
+      get :search
 
-		it "should return all parameters when search criteria are empty" do
-			SearchFilter.any_instance.stub(:empty?) {true}
-			Parameter.stub(:search).with("test.page", instance_of(SearchFilter)) {:some_params}
+      response.should render_template("search")
+      SearchFilter.should_not_receive(:new)
+    end
 
-			get :search, {:source => "", :unit => "", :description => "", :page => "test.page"}
+    it "should return all parameters when search criteria are empty" do
+      SearchFilter.any_instance.stub(:empty?) {true}
+      Parameter.stub(:search).with("test.page", instance_of(SearchFilter)) {:some_params}
 
-			assigns(:parameters).should == :some_params
-			response.should render_template("index")
-		end
+      get :search, {:source => "", :unit => "", :description => "", :page => "test.page"}
 
-		it "should return parameters satisfying valid search criteria" do
-			mock_filter = double('SearchFilter')
-			SearchFilter.stub(:initialize_from)
-			  .with(hash_including({"unit" => "test.unit", "description" => "test.description"}))
-			  .and_return(mock_filter)
-			Parameter.stub(:search).with("test.page", mock_filter) {:some_params}
+      assigns(:parameters).should == :some_params
+      response.should render_template("index")
+    end
 
-			get :search, {:page => "test.page", :unit => "test.unit", :description => "test.description"}
+    it "should return parameters satisfying valid search criteria" do
+      mock_filter = double('SearchFilter')
+      SearchFilter.stub(:initialize_from)
+                  .with(hash_including({"unit" => "test.unit", "description" => "test.description"}))
+                  .and_return(mock_filter)
+      Parameter.stub(:search).with("test.page", mock_filter) {:some_params}
 
-			assigns(:parameters).should == :some_params
-			response.should render_template("index")
-		end
-	end
+      get :search, {:page => "test.page", :unit => "test.unit", :description => "test.description"}
 
-	describe "GET search xml export" do
-		it "return xml data" do
-			SearchFilter.any_instance.stub(:empty?) {true}
-			Parameter.stub(:search).with("test.page", instance_of(SearchFilter)) {:some_params}
+      assigns(:parameters).should == :some_params
+      response.should render_template("index")
+    end
+  end
 
-			get :search, {:format => :xml, :source => "", :unit => "", :description => "", :page => "test.page"}
+  describe "GET search xml export" do
+    it "return xml data" do
+      SearchFilter.any_instance.stub(:empty?) {true}
+      Parameter.stub(:search).with("test.page", instance_of(SearchFilter)) {:some_params}
 
-			response.header["Content-Type"].should include("application/xml")
-		end
-	end
+      get :search, {:format => :xml, :source => "", :unit => "", :description => "", :page => "test.page"}
 
-	describe "GET search pdf export" do
-		it "return pdf data" do
-			SearchFilter.any_instance.stub(:empty?) {true}
+      response.header["Content-Type"].should include("application/xml")
+    end
+  end
 
-			parameter = double("parameter", :unit => "", :source => "", :expression => "", :description => "")
-			Parameter.stub(:search).with("test.page", instance_of(SearchFilter)) {[parameter]}
+  describe "GET search pdf export" do
+    it "return pdf data" do
+      SearchFilter.any_instance.stub(:empty?) {true}
 
-			get :search, {:format => :pdf, :source => "", :unit => "", :description => "", :page => "test.page"}
+      parameter = double("parameter", :unit => "", :source => "", :expression => "", :description => "")
+      Parameter.stub(:search).with("test.page", instance_of(SearchFilter)) {[parameter]}
 
-			response.header["Content-Type"].should include("application/pdf")
-		end
+      get :search, {:format => :pdf, :source => "", :unit => "", :description => "", :page => "test.page"}
 
-		it "should call the PdfGenerator class" do
-			parameters = [double("parameter", :unit => "a", :source => "a", :expression => "c", :description => "d")]
-
-			SearchFilter.any_instance.stub(:empty?) {true}
-			Parameter.stub(:search).with("test.page", instance_of(SearchFilter)) {parameters}
-
-			PdfGenerator.any_instance.stub(:create_pdf).with(parameters) {"generated pdf"}
-
-			get :search, {:format => :pdf, :source => "", :unit => "", :description => "", :page => "test.page"}
-
-			response.body.should == "generated pdf"
-		end
-	end
+      response.header["Content-Type"].should include("application/pdf")
+    end
+  end
 end

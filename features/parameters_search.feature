@@ -12,6 +12,20 @@ Feature: Search functionality
     When I navigate to the parameters search page
 		And I perform a search for parameters with "source" set to "1"
     Then I should see 6 parameters
+    
+  Scenario: Show pages search results
+    Given there are 125 parameters
+    When I navigate to the parameters search page
+    And I perform a search for parameters with "source" set to "5"
+    Then I should see the first 20 parameters out of a total of 21
+
+  @javascript
+  Scenario: Change page size when searching parameters
+    Given there are 125 parameters
+    When I navigate to the parameters search page
+    And I perform a search for parameters with "source" set to "5"
+    And I select 50 as the page size
+    Then I should see 21 parameters
 
   Scenario: Export buttons present
     Given there are 5 parameters

@@ -10,6 +10,13 @@ Feature: View parameters
     When I navigate to the parameters page
     Then I should see the first 20 parameters out of a total of 42
 
+  @javascript
+  Scenario: Change page size when browsing parameters
+    Given there are 52 parameters
+    When I navigate to the parameters page
+    And I select 50 as the page size
+    Then I should see the first 50 parameters out of a total of 52    
+
   Scenario: Move through pages
     Given there are 42 parameters
     When I navigate to the parameters page

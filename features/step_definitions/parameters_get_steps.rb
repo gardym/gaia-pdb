@@ -35,6 +35,10 @@ When /^I choose to view the next page$/ do
   page.find("a.next_page").click
 end
 
+When /^I select (\w+) as the page size$/ do |page_size|
+  select(page_size, :from => "page_size")
+end
+
 Then /^the current page should be (\d+)$/ do |page_number|
     page.find(".pagination em.current").text.should == "#{page_number}"
 end

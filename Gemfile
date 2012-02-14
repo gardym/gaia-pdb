@@ -23,6 +23,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'database_cleaner'
   gem 'launchy'
+  gem 'ruby-debug19'
 end
 
 group :prototype, :production do

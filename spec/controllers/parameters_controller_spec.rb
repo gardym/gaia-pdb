@@ -16,7 +16,7 @@ describe ParametersController do
     
     it "should set the current path" do
       get :index, {}
-      assigns(:current_path).should == "http://test.host/parameters?"
+      assigns(:page_sizing_path).should == "http://test.host/parameters?"
     end    
     
   end

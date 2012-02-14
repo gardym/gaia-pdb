@@ -2,7 +2,7 @@ require 'pdf_generator'
 
 class ParametersController < ApplicationController
   
-  before_filter :set_current_path
+  before_filter :set_page_sizing_path
   
   def index
     @parameters = Parameter.search params[:page], :page_size => params[:page_size]
@@ -28,10 +28,10 @@ class ParametersController < ApplicationController
   
   private
   
-  def set_current_path
+  def set_page_sizing_path
     @page_size = (params[:page_size] ||= 20)
     base_query_string = request.query_string.gsub(/\&*page_size=[\d]*/, "").gsub(/\&*page=[\d]*/, "")
-    @current_path = url_for(:only_path => false) + "?" + base_query_string
+    @page_sizing_path = url_for(:only_path => false) + "?" + base_query_string
   end
   
 end

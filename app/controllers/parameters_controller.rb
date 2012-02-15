@@ -30,8 +30,11 @@ class ParametersController < ApplicationController
   
   def set_page_sizing_path
     @page_size = (params[:page_size] ||= 20)
-    base_query_string = request.query_string.gsub(/\&*page_size=[\d]*/, "").gsub(/\&*page=[\d]*/, "")
-    @page_sizing_path = url_for(:only_path => false) + "?" + base_query_string
+    @page_sizing_path = url_for(:only_path => false) + "?" + remove_paging_information(request.query_string)
+  end
+  
+  def remove_paging_information(query_string)
+    query_string.gsub(/\&*page_size=[\d]*/, "").gsub(/\&*page=[\d]*/, "")
   end
   
 end

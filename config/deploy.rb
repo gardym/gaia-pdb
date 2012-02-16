@@ -25,8 +25,36 @@ set :unicorn_config, "#{current_path}/config/unicorn.rb"
 set :unicorn_pid, "#{deploy_to}/unicorn.pid"
 
 namespace :deploy do  
+  
+  def run_rake_task(t)
+    run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec rake #{t}"
+  end
+    
+  namespace :db do
+    
+    desc "Drop the database on the remote server"
+    task(:drop, :roles => :db) do 
+      run_rake_task("db:drop")
+    end
+    
+    desc "Create the database on the remove server"
+    task(:create, :roles => :db) do
+      run_rake_task("db:create") 
+    end
+    
+    desc "Seed the database with test data"
+    task(:seed, :roles => :db) do
+      run_rake_task("db:seed")
+    end
+    
+    desc "Create, migrate and seed the database on the remove server"
+    task(:test_setup, :roles => :db) { } 
+    after "deploy:db:test_setup", "deploy:db:create", "deploy:migrate", "deploy:db:seed"
+    
+  end
+  
   task :stop, :roles => :app do  
-  run "cd #{current_path} && kill -QUIT `cat #{pid_path}/unicorn.pid`"  
+    run "cd #{current_path} && kill -QUIT `cat #{pid_path}/unicorn.pid`"  
   end   
   
   task :start, :roles => :app do  

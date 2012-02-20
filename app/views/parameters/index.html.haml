@@ -3,8 +3,8 @@
 		= page_entries_info @parameters
 	= will_paginate @parameters, :container => true
 	%label Page size:
-	%select{ :id => "page_size", :onchange => "window.location.href = '#{@page_sizing_path}&page_size=' + $(this).val();" }
-		= options_for_select ["10", "20", "50", "100"], @page_size
+	%select{ :id => "page_size", :onchange => "window.location.href = '#{get_page_sizing_path}&page_size=' + $(this).val();" }
+		= options_for_select ["10", "20", "50", "100"], get_page_size
 	.export
 		= link_to "Export as XML", params.merge(:format => :xml), :id => "export_xml"
 		= link_to "Export as PDF", params.merge(:format => :pdf), :id => "export_pdf"

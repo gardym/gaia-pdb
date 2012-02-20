@@ -1,4 +1,4 @@
-module ParameterHelper
+module ParameterHelper  
   class SearchFilter
     @@criteria_field_map = {
       "unit" => "unit", 

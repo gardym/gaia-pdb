@@ -2,10 +2,10 @@ require 'pdf_generator'
 
 class ParametersController < ApplicationController
   
-  before_filter :set_page_sizing_path
+  helper_method :get_page_size, :get_page_sizing_path
   
   def index
-    @parameters = Parameter.search params[:page], params[:page_size]
+    @parameters = Parameter.search params[:page], get_page_size 
 
     respond_to do |format|
       format.html { render :index }
@@ -16,7 +16,7 @@ class ParametersController < ApplicationController
   
   def search
     unless request.query_string.empty?
-      @parameters = Parameter.search params[:page], params[:page_size], SearchFilter.initialize_from(params)
+      @parameters = Parameter.search params[:page], get_page_size, SearchFilter.initialize_from(params)
 
       respond_to do |format|
         format.html { render :index }
@@ -28,13 +28,13 @@ class ParametersController < ApplicationController
   
   private
   
-  def set_page_sizing_path
-    @page_size = (params[:page_size] ||= 20)
-    @page_sizing_path = url_for(:only_path => false) + "?" + remove_paging_information(request.query_string)
+  def get_page_size
+    params[:page_size] ||= 20
   end
   
-  def remove_paging_information(query_string)
-    query_string.gsub(/\&*page_size=[\d]*/, "").gsub(/\&*page=[\d]*/, "")
+  def get_page_sizing_path
+    url_for(:only_path => false) + "?" + 
+      request.query_string.gsub(/\&*page_size=[\d]*/, "").gsub(/\&*page=[\d]*/, "")
   end
   
 end

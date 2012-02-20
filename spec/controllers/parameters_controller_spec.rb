@@ -1,26 +1,7 @@
 require 'spec_helper'
 
 describe ParametersController do
-  
-  describe "GET (all actions)" do
     
-    it "should set the page size to 20 if no page size is set in the params" do
-      get :index, {:page => nil}
-      assigns(:page_size).should == 20
-    end
-    
-    it "should set the page size to 10 if the page size is set in the params" do
-      get :index, {:page => nil, :page_size => 10}
-      assigns(:page_size).should == "10"
-    end
-    
-    it "should set the current path" do
-      get :index, {}
-      assigns(:page_sizing_path).should == "http://test.host/parameters?"
-    end    
-    
-  end
-  
   describe "GET index" do
     it "should return all parameters" do
       Parameter.stub(:search).with("test.page", 20) {:some_params}

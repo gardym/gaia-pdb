@@ -5,7 +5,7 @@ class ParametersController < ApplicationController
   before_filter :set_page_sizing_path
   
   def index
-    @parameters = Parameter.search params[:page], :page_size => params[:page_size]
+    @parameters = Parameter.search params[:page], params[:page_size]
 
     respond_to do |format|
       format.html { render :index }
@@ -16,7 +16,7 @@ class ParametersController < ApplicationController
   
   def search
     unless request.query_string.empty?
-      @parameters = Parameter.search params[:page], :filter => SearchFilter.initialize_from(params), :page_size => params[:page_size]
+      @parameters = Parameter.search params[:page], params[:page_size], SearchFilter.initialize_from(params)
 
       respond_to do |format|
         format.html { render :index }

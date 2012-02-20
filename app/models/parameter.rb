@@ -1,9 +1,6 @@
 class Parameter < ActiveRecord::Base
   
-  def self.search(page_number, options = {})
-    page_number = page_number ||= 1
-    filter = options[:filter] ||= SearchFilter.new
-    page_size = options[:page_size] ||= 20
+  def self.search(page_number, page_size, filter = SearchFilter.new)
     
     if filter.empty?
       paginate(:page => page_number, :per_page => page_size)

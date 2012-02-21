@@ -55,8 +55,12 @@ Vagrant::Config.run do |config|
   # to this Vagrantfile), and adding some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
-      chef.cookbooks_path = "~/Code/TW/gaia-chef-repo/cookbooks"
-      chef.roles_path = "~/Code/TW/gaia-chef-repo/roles"
+      
+      # The chef recipes are available in a seperate repository (gaia-chef-repo)
+      # Adjust these paths to reference that repository
+      chef.cookbooks_path = "../gaia-chef-repo/cookbooks" 
+      chef.roles_path = "../gaia-chef-repo/roles"
+      
       chef.add_role "appserver"
       chef.add_role "dbserver"
     
